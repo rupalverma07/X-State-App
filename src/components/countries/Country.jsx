@@ -10,23 +10,41 @@ const Country = () => {
     const[citiesData, setCitiesData] = useState([])
     const[showMsg, setShowMsg] = useState(false)
     const getCountriesData = async() =>{
-        const res = await fetch("https://crio-location-selector.onrender.com/countries");
-        const data =await res.json();
-        setCountriesData(data)
-        console.log(data)
+        try {
+            const res = await fetch("https://crio-location-selector.onrender.com/countries");
+            const data =await res.json();
+            setCountriesData(data)
+            console.log(data)
+            
+        } catch (error) {
+           console.log(error) 
+        }
+       
     }
     // https://crio-location-selector.onrender.com/country={countryName}/states
     const getStateData = async(countryName) =>{
-        const res = await fetch(`https://crio-location-selector.onrender.com/country=${countryName}/states`);
-        const data =await res.json();
-        setStatesData(data)
-        console.log(data)
+        try {
+            const res = await fetch(`https://crio-location-selector.onrender.com/country=${countryName}/states`);
+            const data =await res.json();
+            setStatesData(data)
+            console.log(data)  
+        } catch (error) {
+           console.log(error) 
+        }
+        
+       
     }
     const getCityData = async(countryName,stateName) =>{
-        const res = await fetch(`https://crio-location-selector.onrender.com/country=${countryName}/state=${stateName}/cities`);
+        try {
+            const res = await fetch(`https://crio-location-selector.onrender.com/country=${countryName}/state=${stateName}/cities`);
         const data =await res.json();
         setCitiesData(data)
-        console.log(data)
+        console.log(data) 
+        } catch (error) {
+           console.log(error) 
+        }
+        
+       
     }
     const countryHandler = (e) =>{
         let country = e.target.value;
